@@ -162,10 +162,13 @@
 
 			loader = new THREE.GLTFLoader().setPath('https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CubeCave/glTF/');
 			let model;
-			loader.load('TestCubeCave.gltf', function (gltf)
-			{
-				gltf.scene.position.set(0, -50, 0);
-	     		markerRoot1.add(gltf.scene);
+			loader.load('TestCubeCave.gltf', function (gltf) {
+				gltf.scene.children.forEach(element => {
+					element.scale.set(0.2,0.2,0.2);
+					element.position.y = -1;
+					markerRoot1.add(element);
+				});
+				//markerRoot1.add(gltf.scene);
 			});
 
 			// the invisibility cloak (box with a hole)
