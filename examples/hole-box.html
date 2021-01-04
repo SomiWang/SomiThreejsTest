@@ -137,9 +137,10 @@
 
 			loader = new THREE.GLTFLoader();
 			const dracoLoader = new THREE.DRACOLoader();
-			dracoLoader.setDecoderPath('js/libs/draco/gltf/');
+			dracoLoader.setDecoderPath('"https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/js/libs/draco/gltf/');
 			loader.setDRACOLoader(dracoLoader);
-			let modle = loader.load("models/CubeCave/TestCubeCave.gltf");
+			let modle = loader.load("https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CubeCave/glTF/");
+			//let modle = loader.load("https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CesiumMan/glTF/CesiumMan.gltf");
 
 			mesh1 = new THREE.Mesh(modle);
 			mesh1.position.y = -1;
