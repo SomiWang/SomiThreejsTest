@@ -9,6 +9,9 @@
 	<script src="../threex/threex-artoolkitcontext.js"></script>
 	<script src="../threex/threex-arbasecontrols.js"></script>
 	<script src="../threex/threex-armarkercontrols.js"></script>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/DRACOLoader.js"></script>
+
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -18,19 +21,21 @@
 	  Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
 	-->
 
-	<script type="module">
+	<!--<script type="module">
 
-		import * as THREE from '../build/three.module.js';
-		import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
-		import { DRACOLoader } from 'jsm/loaders/DRACOLoader.js';
+		import * as THREE from 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/build/three.module.js';
+		import { GLTFLoader } from 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/jsm/loaders/GLTFLoader.js';
+		import { DRACOLoader } from 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/jsm/loaders/DRACOLoader.js';
 
 		let orbitControls;
 		let camera, scene, renderer, loader;
 		let gltf, background, envMap, mixer, gui, extensionControls;
 		const clock = new THREE.Clock();
-	</script>
+	</script>-->
 
 	<script>
+
+		let camera, scene, renderer, loader,clock;
 
 		var deltaTime, totalTime;
 
@@ -130,8 +135,8 @@
 			//side: THREE.BackSide
 			//});
 
-			loader = new GLTFLoader();
-			const dracoLoader = new DRACOLoader();
+			loader = new THREE.GLTFLoader();
+			const dracoLoader = new THREE.DRACOLoader();
 			dracoLoader.setDecoderPath('js/libs/draco/gltf/');
 			loader.setDRACOLoader(dracoLoader);
 			let modle = loader.load("models/CubeCave/TestCubeCave.gltf");
