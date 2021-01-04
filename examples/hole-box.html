@@ -11,16 +11,14 @@
 	<script src="../threex/threex-armarkercontrols.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/DRACOLoader.js"></script>
-
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-	
+
 	<!--
 	  Example created by Lee Stemkoski: https://github.com/stemkoski
 	  Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
 	-->
-
 	<!--<script type="module">
 
 		import * as THREE from 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/build/three.module.js';
@@ -35,7 +33,7 @@
 
 	<script>
 
-		let camera, scene, renderer, loader,clock;
+		let camera, scene, renderer, loader, clock;
 
 		var deltaTime, totalTime;
 
@@ -135,17 +133,40 @@
 			//side: THREE.BackSide
 			//});
 
-			loader = new THREE.GLTFLoader();
-			const dracoLoader = new THREE.DRACOLoader();
-			dracoLoader.setDecoderPath('"https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/js/libs/draco/gltf/');
-			loader.setDRACOLoader(dracoLoader);
-			let modle = loader.load("https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CubeCave/glTF/");
+			//loader = new THREE.GLTFLoader();
+			//const dracoLoader = new THREE.DRACOLoader();
+			//dracoLoader.setDecoderPath('"https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/js/libs/draco/gltf/');
+			//loader.setDRACOLoader(dracoLoader);
+			//let modle = loader.load("https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CubeCave/glTF/TestCubeCave.gltf");
 			//let modle = loader.load("https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CesiumMan/glTF/CesiumMan.gltf");
 
-			mesh1 = new THREE.Mesh(modle);
-			mesh1.position.y = -1;
+			//new RGBELoader()
+			//	.setDataType(THREE.UnsignedByteType)
+			//	.setPath('https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/textures/equirectangular/')
+			//	.load('royal_esplanade_1k.hdr', function (texture) {
 
-			markerRoot1.add(mesh1);
+			//		const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+
+			//		scene.background = envMap;
+			//		scene.environment = envMap;
+
+			//		texture.dispose();
+			//		pmremGenerator.dispose();
+
+			//		render();
+
+			// model
+
+			// use of RoughnessMipmapper is optional
+			//const roughnessMipmapper = new RoughnessMipmapper(renderer);
+
+			loader = new THREE.GLTFLoader().setPath('https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/SomiWang/SomiThreejsTest/master/examples/models/gltf/CubeCave/glTF/');
+			let model;
+			loader.load('TestCubeCave.gltf', function (gltf)
+			{
+				gltf.scene.position.set(0, -50, 0);
+	     		markerRoot1.add(gltf.scene);
+			});
 
 			// the invisibility cloak (box with a hole)
 			let geometry0 = new THREE.BoxGeometry(2, 2, 2);
